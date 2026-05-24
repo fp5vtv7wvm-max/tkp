@@ -233,12 +233,12 @@ form.onsubmit = async (e) => {
       btn.innerText = "Place Order 💖";
       btn.disabled = false;
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Connection error. Please try again.");
-    btn.innerText = "Place Order 💖";
-    btn.disabled = false;
-  }
+  }  catch (error) {
+  console.error("Full Error Details:", error);
+  alert("Connection error: " + error.message);
+  btn.innerText = "Place Order 💖";
+  btn.disabled = false;
+}
 };
 
 paymentMethod.addEventListener('change', function() {
