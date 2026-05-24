@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Triacakess</title>
+  <style>
+    body { font-family: sans-serif; background: #000; color: #fff; padding: 5px; }
+    /* Reduced padding and width to make it compact for snipping */
+    .flyer { max-width: 400px; margin: 0 auto; background: #111; padding: 10px; border-radius: 15px; border: 2px solid #ff4f8a; }
+    
+    /* Header Container */
+    .header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #333; }
+    h1 { color: #ff4f8a; font-size: 20px; margin: 0; }
+    
+    /* Small QR Code */
+    .header-qr { text-align: center; }
+    .header-qr img { width: 40px; height: 40px; border-radius: 5px; border: 1px solid #ff4f8a; }
+    .header-qr p { font-size: 6px; color: #ffb6c1; margin: 0; font-weight: bold; }
+    
+    .grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+    .card { background: #1a1a1a; padding: 6px; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+    
+    .card img { width: 70px; height: 70px; object-fit: cover; border-radius: 5px; flex-shrink: 0; }
+    .info { flex-grow: 1; }
+    .info h4 { font-size: 12px; margin: 0; color: #ff69b4; }
+    .info p { font-size: 8px; margin: 1px 0; color: #ccc; line-height: 1.1; }
+    .price { font-weight: bold; font-size: 9px; color: #d8b4ff; }
+    
+    .qr-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .qr { background: #1a1a1a; padding: 4px; border-radius: 8px; text-align: center; }
+    .qr img { width: 50px; height: 50px; border-radius: 4px; }
+    .qr p { font-size: 7px; margin: 2px 0 0 0; font-weight: bold; }
+    
+    .disclaimer { font-size: 7px; text-align: center; color: #777; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="flyer">
+  <div class="header-row">
+    <h1>Triacakess 🎀</h1>
+    <div class="header-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=YOUR_WEBSITE_URL_HERE" alt="Scan">
+      <p>SCAN TO ORDER</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <img src="Images/vanilla.jpeg" alt="L">
+      <div class="info">
+        <h4>Zesty Lemon</h4>
+        <p>Our signature lemon-infused cake topped with a bright, tangy citrus glaze.</p>
+        <div class="price">$6 (1) / $12 (2)</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/vb.png" alt="V">
+      <div class="info">
+        <h4>Vanilla Bean</h4>
+        <p>Refreshing buttery vanilla bean loaf. Simple, elegant, and soft.</p>
+        <div class="price">$8 (1) / $14 (2)</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/choco.jpeg" alt="C">
+      <div class="info">
+        <h4>Triple Choco</h4>
+        <p>Rich chocolate loaf with decadent chocolate buttercream.</p>
+        <div class="price">$6 (1) / $12 (2)</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Images/browniebowl.jpeg" alt="B">
+      <div class="info">
+        <h4>Brownie Bowl</h4>
+        <p>A rich, fudgy masterpiece—the ultimate chocolate fix!</p>
+        <div class="price">$5 (1)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qr-row">
+    <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://cash.app/$Demetriagotmoney" alt="C"><p>CASH APP</p></div>
+    <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=sms:3148747541?&body=Hello! I'd like to pay for my order." alt="A"><p>APPLE PAY</p></div>
+  </div>
+  <p class="disclaimer">Cash payments due upon arrival. Exact total only.</p>
+</div>
+
+</body>
+</html>
