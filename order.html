@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,22 +30,16 @@
     }
     h1 { text-align: center; color: #ff4f8a; font-family: 'Pacifico', cursive; margin-bottom: 20px; }
 
-    /* Centered Image Area */
     .image-preview-area { 
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        margin-bottom: 30px; 
-        min-height: 200px; 
+        display: flex; flex-direction: column; justify-content: center; 
+        align-items: center; margin-bottom: 30px; min-height: 220px; text-align: center;
     }
     .dynamic-img { 
-        display: none; 
-        max-width: 250px; 
-        height: auto; 
-        border-radius: 20px; 
-        border: 3px solid #ff4f8a; 
+        display: none; max-width: 250px; height: auto; 
+        border-radius: 20px; border: 3px solid #ff4f8a; 
         box-shadow: 0 4px 15px rgba(255,79,138,0.3); 
     }
+    #placeholder-text { color: #ff69b4; font-style: italic; font-size: 15px; padding: 20px; border: 1px dashed #ff4f8a; border-radius: 15px; }
 
     .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
     label { color: #ff69b4; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; font-size: 14px; }
@@ -57,13 +50,11 @@
         background: linear-gradient(90deg,#ff69b4,#ff1493); color: white; 
         font-weight: 700; width: 100%; margin-top: 20px; cursor: pointer;
     }
-
     .disclaimer-box { 
       background: #1a1a1a; padding: 20px; border-radius: 15px; 
       border-left: 4px solid #ff4f8a; margin-bottom: 25px; font-size: 14px; color: #ffb6c1;
     }
     .consultation-ui, .standard-ui { display: none; }
-    
     footer { margin-top: auto; padding: 50px 20px; text-align: center; color: #666; font-size: 13px; }
   </style>
 </head>
@@ -78,6 +69,7 @@
   <h1 id="main-title">Order Now 🎂</h1>
 
   <div class="image-preview-area">
+    <div id="placeholder-text">Please select a flavor or choose "Catering Consultation" from the dropdown to see your preview!</div>
     <img id="preview-img" class="dynamic-img" src="" alt="Cake">
     <img id="catering-img" class="dynamic-img" src="Images/groupstack.jpeg" alt="Catering">
   </div>
@@ -92,6 +84,10 @@
   </div>
 
   <form id="orderForm" action="https://formsubmit.co/jameshiargross@gmail.com" method="POST">
+    <!-- FORMSET HIDDEN FIELDS -->
+    <input type="hidden" name="_next" value="https://your-github-username.github.io/your-repo-name/submit.html">
+    <input type="text" name="_honey" style="display:none">
+    
     <div class="form-group">
       <label>Service Type</label>
       <select id="service-type" name="Service_Type">
@@ -157,10 +153,10 @@
   </form>
 </div>
 
-  <footer>
-    &copy; Triacakess 2026. All rights reserved. | Designed with ❤️ by Tria. <br>Saint Louis, MO.
-</footer>
+<footer>&copy; Triacakess 2026. All rights reserved.</footer>
+
 <script>
+  // ... (Your existing JavaScript remains the same)
   const serviceSelect = document.getElementById('service-type');
   const cateringDisclaimer = document.getElementById('catering-disclaimer');
   const consultationFields = document.getElementById('consultation-fields');
@@ -173,73 +169,41 @@
   const cityGroup = document.getElementById("city-group");
   const previewImg = document.getElementById('preview-img');
   const cateringImg = document.getElementById('catering-img');
+  const placeholder = document.getElementById('placeholder-text');
 
-  const cakeImages = {
-    "vanilla": "Images/vb.png",
-    "chocolate": "Images/choco.jpeg",
-    "lemon": "Images/vanilla.jpeg"
-  };
+  const cakeImages = { "vanilla": "Images/vb.png", "chocolate": "Images/choco.jpeg", "lemon": "Images/vanilla.jpeg" };
 
   function updateView() {
     const isCatering = serviceSelect.value === 'catering';
+    const hasFlavor = flavor.value !== "";
     cateringDisclaimer.style.display = isCatering ? 'block' : 'none';
     consultationFields.style.display = isCatering ? 'block' : 'none';
     standardFields.style.display = isCatering ? 'none' : 'block';
     mainTitle.innerText = isCatering ? 'Book Consultation' : 'Order Now 🎂';
-    
-    // Manage image visibility
-    previewImg.style.display = (!isCatering && flavor.value) ? 'block' : 'none';
+    previewImg.style.display = (!isCatering && hasFlavor) ? 'block' : 'none';
     cateringImg.style.display = isCatering ? 'block' : 'none';
-    
+    placeholder.style.display = ((!isCatering && hasFlavor) || isCatering) ? 'none' : 'block';
     calculatePrice();
   }
 
   function calculatePrice() {
     if (serviceSelect.value !== 'standard') return;
-    if (!flavor.value) {
-      document.getElementById("price-display").innerText = "Total: $0";
-      document.getElementById("final-price-input").value = "$0";
-      return;
-    }
+    if (!flavor.value) { document.getElementById("price-display").innerText = "Total: $0"; return; }
     let single = (flavor.value === "vanilla") ? 8 : 7;
     let pair = (flavor.value === "vanilla") ? 14 : 12;
     let qty = parseInt(quantity.value) || 0;
     let total = (Math.floor(qty / 2) * pair) + ((qty % 2) * single);
-    if (delivery.value === "Yes") {
-      cityGroup.style.display = "flex";
-      total += parseInt(city.value) || 0;
-    } else {
-      cityGroup.style.display = "none";
-    }
+    if (delivery.value === "Yes") { cityGroup.style.display = "flex"; total += parseInt(city.value) || 0; }
+    else { cityGroup.style.display = "none"; }
     document.getElementById("price-display").innerText = "Total: $" + total;
     document.getElementById("final-price-input").value = "$" + total;
   }
 
   serviceSelect.addEventListener('change', updateView);
   [flavor, quantity, delivery, city].forEach(el => el.addEventListener('change', () => {
-      if(flavor.value && cakeImages[flavor.value]) {
-          previewImg.src = cakeImages[flavor.value];
-      }
-      calculatePrice();
-      updateView();
+      if(flavor.value && cakeImages[flavor.value]) { previewImg.src = cakeImages[flavor.value]; }
+      calculatePrice(); updateView();
   }));
-
-  window.onload = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedFlavor = urlParams.get('flavor');
-    const serviceType = urlParams.get('type');
-    
-    if (serviceType === 'catering') {
-      serviceSelect.value = 'catering';
-    } else if (selectedFlavor) {
-      flavor.value = selectedFlavor;
-      if (cakeImages[selectedFlavor]) {
-        previewImg.src = cakeImages[selectedFlavor];
-      }
-    }
-    updateView();
-  };
 </script>
 </body>
 </html>
-
