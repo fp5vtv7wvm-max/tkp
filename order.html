@@ -3,255 +3,232 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Cakes | Tria's Cakess</title>
-
+  <title>Order/Consultation | Triacakess</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
-
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Poppins',sans-serif; background:black; color:white; min-height:100vh; display: flex; flex-direction: column; }
-
-    /* NAVIGATION */
-    .navbar {
-      background:linear-gradient(90deg,#ffb6c1 0%,#ff4f8a 100%);
-      padding:18px 30px; border-radius:25px; margin:20px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.2); position:relative; top:15px; z-index:1000;
-    }
-    .navbar-brand { font-family:'Pacifico',cursive; font-size:35px; color:white !important; }
-    .hidden-group { display: none !important; }
-
-    /* CONTAINERS */
-    .order-container, .payment-confirmation {
-      width:95%; max-width:700px; margin:70px auto 30px;
-      background:rgba(20,20,20,0.95); padding:40px; border-radius:30px;
-      box-shadow: 0 0 25px rgba(255,79,138,0.25);
-    }
-
-    h1, h2 { text-align:center; color:#ff4f8a; font-family:'Pacifico',cursive; }
-    h1 { font-size:55px; margin-bottom:10px; }
-    h2 { font-size:38px; margin-bottom:20px; }
-    .subtitle { text-align:center; color:#d8b4ff; margin-bottom:35px; font-style: italic; }
-
-    /* FORM STYLES */
-    .form-group { display:flex; flex-direction:column; margin-bottom: 20px; }
-    label { color:#ff69b4; margin-bottom:8px; font-weight:600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-    input, select { width:100%; padding:15px; border:none; border-radius:16px; background:#111; color:white; outline:none; border: 1px solid #222; }
-    input:focus, select:focus { border-color: #ff4f8a; }
-
-    #price-display { 
-        color:#ff4f8a; font-size:28px; font-weight:700; text-align:center; 
-        background: #151515; padding: 20px; border-radius: 20px; 
-        margin: 25px 0; border: 2px dashed #333; 
-    }
-
-    /* PAYMENT UI */
-    .payment-confirmation { display: none; text-align: center; border: 1px solid #444; }
-    .payment-notice { color: #ffb6c1; margin-bottom: 30px; font-size: 16px; line-height: 1.6; }
-    
-    .qr-container { display: none; background: #0a0a0a; padding: 30px; border-radius: 24px; margin-top: 20px; border: 1px solid #ff4f8a; }
-    .qr-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-    .qr-item img { width: 150px; height: 150px; border-radius: 15px; border: 4px solid white; background: white; }
-    .qr-item p { margin-top: 12px; color: #ffb6c1; font-weight: 700; font-size: 14px; }
-
-    .cash-alert { padding: 20px; background: #1a1a1a; border-radius: 15px; color: #ffb6c1; border-left: 4px solid #ff4f8a; margin-top: 20px; }
-
-    button, .home-btn { 
-        padding:18px; border:none; border-radius:50px; 
-        background:linear-gradient(90deg,#ff69b4,#ff1493); color:white; 
-        font-size:18px; font-weight:700; cursor:pointer; width: 100%; 
-        transition: 0.3s; text-decoration: none; display: inline-block;
-    }
-    button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 20, 147, 0.4); }
-
-    /* FOOTER */
-    footer { margin-top: auto; padding: 50px 20px; text-align: center; color: #666; font-size: 13px; letter-spacing: 1px; }
-
-    @media(max-width:768px){ h1 { font-size:42px; } .order-container { padding: 30px 20px; } }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 60px; }
+    .navbar { background: linear-gradient(90deg, #ffb6c1 0%, #ff4f8a 100%); padding: 15px 40px; border-radius: 50px; margin: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    .logo { font-family: 'Pacifico', cursive; font-size: 32px; color: white; }
+    .home-btn { background: white; color: #ff4f8a; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; }
+    .order-container { width: 95%; max-width: 700px; margin: 40px auto; background: rgba(20,20,20,0.95); padding: 40px; border-radius: 30px; box-shadow: 0 0 25px rgba(255,79,138,0.25); }
+    h1 { text-align: center; color: #ff4f8a; font-family: 'Pacifico', cursive; margin-bottom: 20px; }
+    .image-preview-area { display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 30px; min-height: 220px; text-align: center; }
+    .dynamic-img { display: none; max-width: 250px; height: auto; border-radius: 20px; border: 3px solid #ff4f8a; box-shadow: 0 4px 15px rgba(255,79,138,0.3); }
+    .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+    label { color: #ff69b4; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; font-size: 14px; }
+    input, select, textarea { padding: 15px; border-radius: 16px; background: #111; color: white; border: 1px solid #333; outline: none; }
+    .disclaimer-box { background: #1a1a1a; padding: 20px; border-radius: 15px; border-left: 4px solid #ff4f8a; margin-bottom: 25px; font-size: 14px; color: #ffb6c1; }
+    button { padding: 18px; border: none; border-radius: 50px; background: linear-gradient(90deg,#ff69b4,#ff1493); color: white; font-weight: 700; width: 100%; margin-top: 20px; cursor: pointer; }
+    footer { margin-top: auto; padding: 50px 20px; text-align: center; color: #666; font-size: 13px; }
   </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Tria's Cakess 🎀</a>
-    <a href="index.html" class="btn btn-light rounded-pill fw-bold" style="color: #ff4f8a; font-size: 14px;">HOME</a>
-  </div>
+  <div class="logo">Triacakess 🎀</div>
+  <a href="index.html" class="home-btn">HOME</a>
 </nav>
 
-<!-- STEP 1: ORDER FORM -->
-<div class="order-container" id="form-step">
-  <h1>Order Now 🎂</h1>
-  <p class="subtitle">Homemade with love by Tria 💕</p>
+<div class="order-container">
+  <h1 id="main-title">Order Now 🎂</h1>
+  
+  <div class="image-preview-area">
+    <img id="preview-img" class="dynamic-img" src="" alt="Cake">
+    <img id="catering-img" class="dynamic-img" src="Images/groupstack.jpeg" alt="Catering">
+  </div>
 
-  <form id="cakeOrderForm" action="https://formsubmit.co/gross.jameshia@yahoo.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" name="name" placeholder="Who is this for?" required>
+  <!-- SUCCESS SECTION -->
+  <div id="payment-section" style="display:none; text-align:center;">
+    <div id="payment-ui">
+        <h1 style="color: #4CAF50;">Cake Order Received! 🎉</h1>
+        <h3 style="color: #4CAF50;">An Order Confirmation Text Will Be Sent Soon.</h3>
+        <h2 style="color: #4CAF50;">All Order Payments Must Be Finalized Upon Arrival.</h2>
+        <p style="margin-bottom: 20px;">Please finalize your payment:</p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cash.app/$Demetriagotmoney" alt="CashApp" style="border: 4px solid white; border-radius: 15px;">
+                <p style="margin-top: 10px; font-weight: bold;">$Demetriagotmoney</p>
+            </div>
+            <div style="text-align: center;">
+                <a href="sms:3148747541&body=Hello! I am sending an Apple Pay payment for my cake order.">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=sms:3148747541?&body=Hello!%20Sending%20payment%20for%20my%20cake." alt="ApplePay" style="border: 4px solid white; border-radius: 15px;">
+                </a>
+                <p style="margin-top: 10px; font-weight: bold;">Apple Pay (Scan The Code)</p>
+            </div>
+        </div>
+        <div style="background: #1a1a1a; padding: 15px; border-radius: 15px; border-left: 4px solid #ff4f8a; margin-top: 20px;">
+            <strong>Cash Payment:</strong><br>Due upon arrival. Exact change preferred.
+        </div>
+    </div>
+
+    <div id="catering-ui" style="display:none;">
+        <h1 style="color: #ff4f8a;">Consultation Requested! ✨</h1>
+        <p>Thank you! Tria has received your request. Someone will reach out to you within 24-48 hours to confirm your appointment.</p>
+    </div>
+
+    <a href="index.html" style="display: inline-block; margin-top: 30px; padding: 15px 30px; background: #ff4f8a; color: white; text-decoration: none; border-radius: 50px; font-weight: 700;">Back to Home</a>
+  </div>
+
+  <!-- ORDER FORM -->
+  <form id="orderForm">
+    <input type="hidden" name="access_key" value="2425d9f7-8cec-44df-9fe1-2f589b9d9486">
+    
+    <div id="catering-disclaimer" class="disclaimer-box" style="display:none;">
+      <strong>Catering Consultation Info:</strong>
+      <ul><li>20+ cake orders require 5-day notice.</li><li>Includes: Bags, utensils, wipes.</li><li>30 min consultation.</li></ul>
     </div>
 
     <div class="form-group">
-      <label>Phone Number</label>
-      <input type="tel" name="number" placeholder="(000) 000-0000" required>
-    </div>
-
-    <div class="form-group">
-      <label>Cake Flavor</label>
-      <select id="flavor" name="flavor" required>
-        <option value="">-- Select Flavor --</option>
-        <option value="vanilla">Vanilla Bean (2 for $14 | 1 for $8)</option>
-        <option value="chocolate">Chocolate (2 for $12 | 1 for $7)</option>
-        <option value="lemon">Lemon (2 for $12 | 1 for $7)</option>
+      <label>Service Type</label>
+      <select id="service-type" name="Service_Type">
+        <option value="standard">Standard Cake Order</option>
+        <option value="catering">Catering Consultation (30 min)</option>
       </select>
     </div>
 
-    <div class="form-group">
-      <label>Quantity</label>
-      <input type="number" id="quantity" name="quantity" min="1" value="1">
+    <div class="form-group"><label>Name</label><input type="text" name="name" required></div>
+    <div class="form-group"><label>Phone Number</label><input type="tel" name="number" required></div>
+
+    <div id="standard-fields">
+      <div class="form-group"><label>Cake Flavor</label>
+        <select id="flavor" name="flavor">
+          <option value="">-- Select Flavor --</option>
+          <option value="vanilla">Vanilla Bean (2 for $14 | 1 for $8)</option>
+          <option value="chocolate">Chocolate (2 for $12 | 1 for $7)</option>
+          <option value="lemon">Lemon (2 for $12 | 1 for $7)</option>
+          <option value="brownie">Brownie Bowl ($5 each)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Quantity</label><input type="number" id="quantity" name="quantity" min="1" value="1"></div>
+      <div class="form-group"><label>Pickup or Delivery?</label>
+        <select id="delivery" name="delivery">
+          <option value="No">Pickup (Free)</option>
+          <option value="Yes">Delivery</option>
+        </select>
+      </div>
+      <div id="delivery-details" style="display:none;">
+        <div class="form-group"><label>Delivery Address</label><input type="text" name="address" placeholder="123 Street, St. Louis, MO"></div>
+        <div class="form-group"><label>Delivery City</label>
+          <select id="city" name="city">
+            <option value="0">-- Select City --</option>
+            <option value="6">St. Louis City (+$6)</option>
+            <option value="5">St. Charles, MO (+$5)</option>
+            <option value="2">St. Louis County (+$2)</option>
+          </select>
+        </div>
+      </div>
+      <div id="price-display" style="color:#ff4f8a; font-size:24px; font-weight:700; margin: 15px 0; text-align:center;">Total: $0</div>
+      <input type="hidden" id="final-price-input" name="Total_Price">
     </div>
 
-    <div class="form-group">
-      <label>Pickup or Delivery?</label>
-      <select id="delivery" name="delivery">
-        <option value="No" selected>Pickup (Free)</option>
-        <option value="Yes">Delivery</option>
-      </select>
+    <div id="consultation-fields" style="display:none;">
+      <div class="form-group"><label>Pick a Date</label><input type="date" id="consult-date" name="Consultation_Date"></div>
+      <div class="form-group"><label>Pick a Time (CST)</label><select id="consult-time" name="Consultation_Time"></select></div>
+      <div class="form-group"><label>Brief Description</label><textarea name="inquiry_description" rows="3" placeholder="Tell me about your event!"></textarea></div>
     </div>
 
-    <div class="form-group hidden-group" id="city-group">
-      <label>Delivery Location</label>
-      <select id="city" name="city">
-        <option value="">-- Select City --</option>
-        <option value="6">St. Louis City (+$6)</option>
-        <option value="5">St. Charles, MO (+$5)</option>
-        <option value="2">St. Louis County (+$2)</option>
-      </select>
-    </div>
-
-    <div id="price-display">Total: $0</div>
-    <input type="hidden" id="final-price-input" name="Total_Price">
-
-    <button type="submit">Place Order 💖</button>
+    <button type="submit" id="submit-btn">Place Order 💖</button>
+    <button type="button" id="back-btn" onclick="resetToSelection()" style="display:none; background: #333; margin-top: 10px;">Back / Cancel</button>
   </form>
 </div>
 
-<!-- STEP 2: PAYMENT SCREEN -->
-<div class="payment-confirmation" id="payment-step">
-  <h2>Order Received! 🎉</h2>
-  <p class="payment-notice">Thank you for your order! To finalize and secure your spot, please select a payment method below.</p>
-
-  <div class="form-group">
-    <label>Choose Payment Method</label>
-    <select id="payment-method">
-      <option value="">-- Select Payment --</option>
-      <option value="qr">Cash App / Apple Pay</option>
-      <option value="cash">Cash (Exact change preferred)</option>
-    </select>
-  </div>
-
-  <!-- QR Display -->
-  <div id="qr-display" class="qr-container">
-    <div class="qr-grid">
-      <div class="qr-item">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CASHAPP_ID" alt="Cash App QR">
-        <p>SCAN FOR CASH APP</p>
-      </div>
-      <div class="qr-item">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=APPLE_PAY_ID" alt="Apple Pay QR">
-        <p>SCAN FOR APPLE PAY</p>
-      </div>
-    </div>
-    <p style="margin-top:20px; font-size: 12px; color: #666;">Please include your name in the payment note!</p>
-  </div>
-
-  <!-- Cash Message -->
-  <div id="cash-message" class="hidden-group">
-    <div class="cash-alert">
-      <strong>Note:</strong> Cash payments are due upon arrival. Please ensure you have the exact total ready.
-    </div>
-  </div>
-
-  <div style="margin-top: 40px;">
-    <a href="index.html" class="home-btn">Finish & Go Home</a>
-  </div>
-</div>
-
+<footer>&copy; Triacakess 2026. All rights reserved.</footer>
 
 <script>
-const form = document.getElementById('cakeOrderForm');
-const formStep = document.getElementById('form-step');
-const paymentStep = document.getElementById('payment-step');
-const paymentMethod = document.getElementById('payment-method');
-const qrDisplay = document.getElementById('qr-display');
-const cashMessage = document.getElementById('cash-message');
+  const serviceSelect = document.getElementById('service-type');
+  const flavor = document.getElementById('flavor');
+  const quantity = document.getElementById('quantity');
+  const delivery = document.getElementById('delivery');
+  const city = document.getElementById('city');
+  const consultDate = document.getElementById('consult-date');
+  const consultTime = document.getElementById('consult-time');
+  const backBtn = document.getElementById('back-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const cakeImages = { "vanilla": "Images/beanv.jpeg", "chocolate": "Images/choco.jpeg", "lemon": "Images/vanilla.jpeg", "brownie": "Images/browniebowl.jpeg" };
 
-function calculatePrice() {
-  const flavor = document.getElementById("flavor").value;
-  const quantity = parseInt(document.getElementById("quantity").value) || 0;
-  const delivery = document.getElementById("delivery").value;
-  const cityValue = document.getElementById("city").value;
-  
-  const cityGroup = document.getElementById("city-group");
-  delivery === "Yes" ? cityGroup.classList.remove("hidden-group") : cityGroup.classList.add("hidden-group");
-
-  let single = (flavor === "vanilla") ? 8 : 7;
-  let pair = (flavor === "vanilla") ? 14 : 12;
-
-  let total = (Math.floor(quantity / 2) * pair) + ((quantity % 2) * single);
-  if (delivery === "Yes" && cityValue) total += parseInt(cityValue);
-
-  const finalStr = (flavor === "") ? "Total: $0" : "Total: $" + total;
-  document.getElementById("price-display").innerText = finalStr;
-  document.getElementById("final-price-input").value = finalStr;
-}
-
-form.onsubmit = async (e) => {
-  e.preventDefault();
-  const btn = form.querySelector('button');
-  btn.innerText = "Sending...";
-  btn.disabled = true;
-
-  try {
-    const formData = new FormData(form);
-    
-    // Testing with mode: 'no-cors' to bypass browser-level blocking
-    const response = await fetch(form.action, { 
-      method: 'POST', 
-      body: formData,
-      mode: 'no-cors' 
-    });
-
-    // With no-cors, we can't see the status, so we assume success
-    formStep.style.display = 'none';
-    paymentStep.style.display = 'block';
-    window.scrollTo(0, 0);
-
-  } catch (error) {
-    console.error("Error Details:", error);
-    alert("Still failing. Please ensure you clicked the 'Activate Form' link in your Yahoo email!");
-    btn.innerText = "Place Order 💖";
-    btn.disabled = false;
+  function resetToSelection() {
+    document.getElementById('orderForm').reset();
+    serviceSelect.value = 'standard';
+    updateView();
   }
-};
 
-paymentMethod.addEventListener('change', function() {
-  qrDisplay.style.display = (this.value === 'qr') ? 'block' : 'none';
-  this.value === 'cash' ? cashMessage.classList.remove('hidden-group') : cashMessage.classList.add('hidden-group');
-});
+ consultDate.min = new Date().toISOString().split("T")[0];
+  
+  // Starting at 12 (12 PM) and ending at 20 (8 PM)
+  for (let h = 12; h <= 20; h++) {
+    [0, 30].forEach(m => {
+      // Logic to stop at 8:00 PM exactly (don't add 8:30 PM)
+      if (h === 20 && m === 30) return;
 
-document.querySelectorAll('select, input').forEach(el => el.addEventListener('change', calculatePrice));
+      let hour = h, ampm = hour >= 12 ? 'PM' : 'AM';
+      let displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+      let timeDisplay = `${displayHour.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} ${ampm}`;
+      let val = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+      
+      let opt = document.createElement('option');
+      opt.value = val; 
+      opt.innerText = timeDisplay;
+      consultTime.appendChild(opt);
+    });
+  }
 
-window.onload = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const flavorParam = urlParams.get('flavor');
-  if (flavorParam) document.getElementById("flavor").value = flavorParam;
-  calculatePrice();
-};
+  function updateView() {
+    const isCatering = serviceSelect.value === 'catering';
+    submitBtn.innerText = isCatering ? "Submit Consultation Request ✨" : "Place Order 💖";
+    
+    document.getElementById('catering-disclaimer').style.display = isCatering ? 'block' : 'none';
+    document.getElementById('consultation-fields').style.display = isCatering ? 'block' : 'none';
+    document.getElementById('standard-fields').style.display = isCatering ? 'none' : 'block';
+    backBtn.style.display = isCatering ? 'block' : 'none';
+    document.getElementById('main-title').innerText = isCatering ? 'Book Consultation' : 'Order Now 🎂';
+    document.getElementById('delivery-details').style.display = (delivery.value === "Yes" && !isCatering) ? 'block' : 'none';
+    document.getElementById('preview-img').style.display = (!isCatering && flavor.value) ? 'block' : 'none';
+    document.getElementById('catering-img').style.display = isCatering ? 'block' : 'none';
+    
+    if(flavor.value && cakeImages[flavor.value]) document.getElementById('preview-img').src = cakeImages[flavor.value];
+    calculatePrice();
+  }
+
+  function calculatePrice() {
+    if (serviceSelect.value !== 'standard') return;
+    let total = 0, qty = parseInt(quantity.value) || 1;
+    if (flavor.value === 'brownie') total = qty * 5;
+    else if (flavor.value === 'vanilla') total = (Math.floor(qty/2)*14) + ((qty%2)*8);
+    else if (flavor.value === 'chocolate' || flavor.value === 'lemon') total = (Math.floor(qty/2)*12) + ((qty%2)*7);
+    if (delivery.value === "Yes") total += parseInt(city.value) || 0;
+    document.getElementById("price-display").innerText = "Total: $" + total;
+    document.getElementById("final-price-input").value = "$" + total;
+  }
+
+  window.onload = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('type') === 'catering') serviceSelect.value = 'catering';
+    else if (params.get('flavor')) { serviceSelect.value = 'standard'; flavor.value = params.get('flavor'); }
+    updateView();
+  };
+
+  [serviceSelect, flavor, quantity, delivery, city].forEach(el => el.addEventListener('change', updateView));
+
+  document.getElementById('orderForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const isCatering = serviceSelect.value === 'catering';
+    btn.innerText = "Processing...";
+    
+    const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: new FormData(e.target) });
+    if (res.ok) {
+        document.getElementById('orderForm').style.display = 'none';
+        document.getElementById('main-title').style.display = 'none';
+        document.getElementById('payment-section').style.display = 'block';
+        document.getElementById('payment-ui').style.display = isCatering ? 'none' : 'block';
+        document.getElementById('catering-ui').style.display = isCatering ? 'block' : 'none';
+    } else { 
+        alert("Error sending request."); 
+        btn.innerText = isCatering ? "Submit Consultation Request ✨" : "Place Order 💖";
+    }
+  };
 </script>
-<footer>
-    &copy; Tria's Cakess 2026. All rights reserved. | Designed with ❤️ by Tria. <br>Saint Louis, MO | Follow us on <a href="#" style="color: #ff69b4; text-decoration: none;">Instagram</a> & <a href="#" style="color: #ff69b4; text-decoration: none;">Facebook</a>
-</footer>
-
 </body>
 </html>
