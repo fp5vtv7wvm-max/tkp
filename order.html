@@ -9,25 +9,13 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 60px; }
-.navbar {
-  display: flex; justify-content: space-between; align-items: center;
-  background: linear-gradient(90deg, #ffb6c1 0%, #ff4f8a 100%);
-  padding: 15px 40px; border-radius: 50px; margin: 20px;
-  position: relative; z-index: 1000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-.nav-links { display: flex; gap: 20px; align-items: center; }
-.nav-link { text-decoration: none; color: white; font-weight: 600; }
-.menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.menu-toggle span { width: 25px; height: 3px; background: white; border-radius: 2px; }
-
-@media (max-width: 768px) {
-  .menu-toggle { display: flex; }
-  .nav-links { 
-    display: none; flex-direction: column; position: absolute; top: 80px; right: 20px;
-    background: #ff4f8a; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-  .nav-links.active { display: flex; }
-}    .logo { font-family: 'Pacifico', cursive; font-size: 32px; color: white; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(90deg, #ffb6c1 0%, #ff4f8a 100%); padding: 15px 40px; border-radius: 50px; margin: 20px; position: relative; z-index: 1000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-link { text-decoration: none; color: white; font-weight: 600; }
+    .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .menu-toggle span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+    @media (max-width: 768px) { .menu-toggle { display: flex; } .nav-links { display: none; flex-direction: column; position: absolute; top: 80px; right: 20px; background: #ff4f8a; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); } .nav-links.active { display: flex; } }
+    .logo { font-family: 'Pacifico', cursive; font-size: 32px; color: white; }
     .home-btn { background: white; color: #ff4f8a; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; }
     .order-container { width: 95%; max-width: 700px; margin: 40px auto; background: rgba(20,20,20,0.95); padding: 40px; border-radius: 30px; box-shadow: 0 0 25px rgba(255,79,138,0.25); }
     h1 { text-align: center; color: #ff4f8a; font-family: 'Pacifico', cursive; margin-bottom: 20px; }
@@ -45,21 +33,16 @@
 
 <nav class="navbar">
   <div class="logo">Triacakess 🎀</div>
-  <div class="menu-toggle" id="mobile-menu">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
   <div class="nav-links">
     <a href="index.html" class="nav-link">Home</a>
     <a href="flyer.html" class="nav-link">Menu</a>
-    <a href="index.html#baker" class="nav-link">Meet The Baker</a>
-    <a href="index.html#about" class="nav-link">Catering</a>
     <a href="order.html" class="home-btn">Order Now 💖</a>
   </div>
 </nav>
 
 <div class="order-container">
   <h1 id="main-title">Order Now 🎂</h1>
-  
   <div class="image-preview-area">
     <img id="preview-img" class="dynamic-img" src="" alt="Cake">
     <img id="catering-img" class="dynamic-img" src="Images/groupstack.jpeg" alt="Catering">
@@ -68,16 +51,15 @@
   <div id="payment-section" style="display:none; text-align:center;">
     <div id="payment-ui">
         <h1 style="color: #4CAF50;">Cake Order Received! 🎉</h1>
+        <div id="order-recap" style="background: #222; padding: 15px; border-radius: 10px; margin: 20px auto; text-align: left;">
+            <h4 style="color:#ff4f8a; text-align:center;">Order Summary</h4>
+            <ul id="recap-list" style="list-style: none; padding: 0;"></ul>
+            <p id="recap-total" style="font-weight:bold; text-align:center; margin-top:10px;"></p>
+        </div>
         <p>Please finalize your payment:</p>
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cash.app/$Demetriagotmoney" alt="CashApp" style="border: 4px solid white; border-radius: 15px;">
-                <p style="margin-top: 10px; font-weight: bold;">$Demetriagotmoney</p>
-            </div>
-            <div style="text-align: center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=sms:3148747541?&body=Hello!%20Sending%20payment%20for%20my%20cake." alt="ApplePay" style="border: 4px solid white; border-radius: 15px;">
-                <p style="margin-top: 10px; font-weight: bold;">Apple Pay (Scan)</p>
-            </div>
+            <div><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cash.app/$Demetriagotmoney" style="border: 4px solid white; border-radius: 15px;"><p>$Demetriagotmoney</p></div>
+            <div><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=sms:3148747541?&body=Hello!%20Sending%20payment%20for%20my%20cake." style="border: 4px solid white; border-radius: 15px;"><p>Apple Pay (Scan)</p></div>
         </div>
     </div>
     <div id="catering-ui" style="display:none;">
@@ -89,87 +71,46 @@
 
   <form id="orderForm">
     <input type="hidden" name="access_key" value="771e02f8-f224-4273-bcfe-f6cdefccad8e">
-    
     <div id="catering-disclaimer" class="disclaimer-box" style="display:none;">
       <strong>Catering Consultation Info:</strong>
       <ul><li>20+ cake orders require 5-day notice.</li><li>Includes: Bags, utensils, wipes.</li><li>30 min consultation.</li></ul>
     </div>
-
-    <div class="form-group">
-      <label>Service Type</label>
-      <select id="service-type" name="Service_Type">
-        <option value="standard">Standard Cake Order</option>
-        <option value="catering">Catering Consultation (30 min)</option>
-      </select>
-    </div>
-
-    <div class="form-group"><label>Name</label><input type="text" name="name" required></div>
-    <div class="form-group"><label>Phone Number</label><input type="tel" name="number" required></div>
-
+    <div class="form-group"><label>Service Type</label><select id="service-type" name="Service_Type"><option value="standard">Standard Cake Order</option><option value="catering">Catering Consultation (30 min)</option></select></div>
     <div id="standard-fields">
-      <div class="form-group"><label>Cake Flavor</label>
-        <select id="flavor" name="flavor">
-          <option value="">-- Select Flavor --</option>
-          <option value="vanilla">Vanilla Bean (2 for $14 | 1 for $8)</option>
-          <option value="chocolate">Chocolate (2 for $12 | 1 for $7)</option>
-          <option value="lemon">Lemon (2 for $12 | 1 for $7)</option>
-          <option value="brownie">Brownie Bowl ($5 each)</option>
-        </select>
+      <label>Select Flavors & Quantities</label>
+      <div id="flavor-container">
+        <div class="flavor-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;"><input type="checkbox" name="flavor_vanilla" value="vanilla" class="flavor-check"> <span style="flex:1;">Vanilla Bean (2/$14 | 1/$8)</span><input type="number" class="flavor-qty" value="0" min="0" style="width:60px;"></div>
+        <div class="flavor-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;"><input type="checkbox" name="flavor_chocolate" value="chocolate" class="flavor-check"> <span style="flex:1;">Chocolate (2/$12 | 1/$7)</span><input type="number" class="flavor-qty" value="0" min="0" style="width:60px;"></div>
+        <div class="flavor-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;"><input type="checkbox" name="flavor_lemon" value="lemon" class="flavor-check"> <span style="flex:1;">Lemon (2/$12 | 1/$7)</span><input type="number" class="flavor-qty" value="0" min="0" style="width:60px;"></div>
+        <div class="flavor-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;"><input type="checkbox" name="flavor_brownie" value="brownie" class="flavor-check"> <span style="flex:1;">Brownie Bowl ($5)</span><input type="number" class="flavor-qty" value="0" min="0" style="width:60px;"></div>
       </div>
-      <div class="form-group"><label>Quantity</label><input type="number" id="quantity" name="quantity" min="1" value="1"></div>
-      <div class="form-group"><label>Pickup or Delivery?</label>
-        <select id="delivery" name="delivery">
-          <option value="No">Pickup (Free)</option>
-          <option value="Yes">Delivery</option>
-        </select>
-      </div>
-      <div id="delivery-details" style="display:none;">
-        <div class="form-group"><label>Delivery Address</label><input type="text" name="address" placeholder="123 Street, St. Louis, MO"></div>
-        <div class="form-group"><label>Delivery City</label>
-          <select id="city" name="city">
-            <option value="0">-- Select City --</option>
-            <option value="6">St. Louis City (+$6)</option>
-            <option value="5">St. Charles, MO (+$5)</option>
-            <option value="2">St. Louis County (+$2)</option>
-          </select>
-        </div>
-      </div>
+      <div class="form-group"><label>Pickup or Delivery?</label><select id="delivery" name="delivery"><option value="No">Pickup (Free)</option><option value="Yes">Delivery</option></select></div>
+      <div id="delivery-details" style="display:none;"><div class="form-group"><label>Address</label><input type="text" name="address"></div><div class="form-group"><label>City</label><select id="city" name="city"><option value="0">-- Select City --</option><option value="6">St. Louis City (+$6)</option><option value="5">St. Charles, MO (+$5)</option><option value="2">St. Louis County (+$2)</option></select></div></div>
       <div id="price-display" style="color:#ff4f8a; font-size:24px; font-weight:700; margin: 15px 0; text-align:center;">Total: $0</div>
       <input type="hidden" id="final-price-input" name="Total_Price">
     </div>
+    <div class="form-group"><label>Name</label><input type="text" name="name" required></div>
+    <div class="form-group"><label>Phone Number</label><input type="tel" name="number" required></div>
 
     <div id="consultation-fields" style="display:none;">
       <div class="form-group"><label>Pick a Date</label><input type="date" id="consult-date" name="Consultation_Date"></div>
       <div class="form-group"><label>Pick a Time (CST)</label><select id="consult-time" name="Consultation_Time"></select></div>
       <div class="form-group"><label>Brief Description</label><textarea name="inquiry_description" rows="3" placeholder="Tell me about your event!"></textarea></div>
     </div>
-
     <button type="submit" id="submit-btn">Place Order 💖</button>
-    <button type="button" id="back-btn" onclick="resetToSelection()" style="display:none; background: #333; margin-top: 10px; width: 100%; padding: 18px; border: none; border-radius: 50px; color: white;">Back / Cancel</button>
   </form>
 </div>
- <footer>
-    &copy; Triacakess 2026. All rights reserved. | Designed with ❤️ by Tria. <br>Saint Louis, MO.
-</footer>
 
 <script>
   const serviceSelect = document.getElementById('service-type');
-  const flavor = document.getElementById('flavor');
-  const quantity = document.getElementById('quantity');
   const delivery = document.getElementById('delivery');
   const city = document.getElementById('city');
+  const submitBtn = document.getElementById('submit-btn');
   const consultDate = document.getElementById('consult-date');
   const consultTime = document.getElementById('consult-time');
-  const backBtn = document.getElementById('back-btn');
-  const submitBtn = document.getElementById('submit-btn');
   const cakeImages = { "vanilla": "Images/beanv.jpeg", "chocolate": "Images/choco.jpeg", "lemon": "Images/vanilla.jpeg", "brownie": "Images/browniebowl.jpeg" };
 
-  function resetToSelection() {
-    document.getElementById('orderForm').reset();
-    serviceSelect.value = 'standard';
-    updateView();
-  }
-
+  // Init Time Select
   consultDate.min = new Date().toISOString().split("T")[0];
   for (let h = 12; h <= 20; h++) {
     [0, 30].forEach(m => {
@@ -186,61 +127,99 @@
 
   function updateView() {
     const isCatering = serviceSelect.value === 'catering';
-    submitBtn.innerText = isCatering ? "Submit Consultation Request ✨" : "Place Order 💖";
-    document.getElementById('catering-disclaimer').style.display = isCatering ? 'block' : 'none';
-    document.getElementById('consultation-fields').style.display = isCatering ? 'block' : 'none';
     document.getElementById('standard-fields').style.display = isCatering ? 'none' : 'block';
-    backBtn.style.display = isCatering ? 'block' : 'none';
-    document.getElementById('main-title').innerText = isCatering ? 'Book Consultation' : 'Order Now 🎂';
+    document.getElementById('consultation-fields').style.display = isCatering ? 'block' : 'none';
+    document.getElementById('catering-disclaimer').style.display = isCatering ? 'block' : 'none';
     document.getElementById('delivery-details').style.display = (delivery.value === "Yes" && !isCatering) ? 'block' : 'none';
-    document.getElementById('preview-img').style.display = (!isCatering && flavor.value) ? 'block' : 'none';
     document.getElementById('catering-img').style.display = isCatering ? 'block' : 'none';
-    if(flavor.value && cakeImages[flavor.value]) document.getElementById('preview-img').src = cakeImages[flavor.value];
+    
+    const checked = document.querySelectorAll('.flavor-check:checked');
+    const previewImg = document.getElementById('preview-img');
+    if (!isCatering && checked.length > 0) {
+        previewImg.style.display = 'block';
+        previewImg.src = cakeImages[checked[checked.length - 1].value];
+    } else { previewImg.style.display = 'none'; }
     calculatePrice();
   }
 
   function calculatePrice() {
-    if (serviceSelect.value !== 'standard') return;
-    let total = 0, qty = parseInt(quantity.value) || 1;
-    if (flavor.value === 'brownie') total = qty * 5;
-    else if (flavor.value === 'vanilla') total = (Math.floor(qty/2)*14) + ((qty%2)*8);
-    else if (flavor.value === 'chocolate' || flavor.value === 'lemon') total = (Math.floor(qty/2)*12) + ((qty%2)*7);
+    let total = 0;
+    document.querySelectorAll('.flavor-row').forEach(row => {
+      if (row.querySelector('.flavor-check').checked) {
+        let qty = parseInt(row.querySelector('.flavor-qty').value) || 0;
+        let flavor = row.querySelector('.flavor-check').value;
+        if (flavor === 'brownie') total += (qty * 5);
+        else if (flavor === 'vanilla') total += (Math.floor(qty / 2) * 14) + ((qty % 2) * 8);
+        else total += (Math.floor(qty / 2) * 12) + ((qty % 2) * 7);
+      }
+    });
     if (delivery.value === "Yes") total += parseInt(city.value) || 0;
     document.getElementById("price-display").innerText = "Total: $" + total;
     document.getElementById("final-price-input").value = "$" + total;
   }
 
-  window.onload = () => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('type') === 'catering') serviceSelect.value = 'catering';
-    else if (params.get('flavor')) { serviceSelect.value = 'standard'; flavor.value = params.get('flavor'); }
-    updateView();
-  };
-
-  [serviceSelect, flavor, quantity, delivery, city].forEach(el => el.addEventListener('change', updateView));
-
+  [serviceSelect, delivery, city].forEach(el => el.addEventListener('change', updateView));
+  document.querySelectorAll('.flavor-check, .flavor-qty').forEach(el => el.addEventListener('change', updateView));
+  
   document.getElementById('orderForm').onsubmit = async (e) => {
     e.preventDefault();
-    const isCatering = serviceSelect.value === 'catering';
+    submitBtn.disabled = true;
     submitBtn.innerText = "Processing...";
-    const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: new FormData(e.target) });
-    if (res.ok) {
-        document.getElementById('orderForm').style.display = 'none';
-        document.getElementById('main-title').style.display = 'none';
-        document.getElementById('payment-section').style.display = 'block';
-        document.getElementById('payment-ui').style.display = isCatering ? 'none' : 'block';
-        document.getElementById('catering-ui').style.display = isCatering ? 'block' : 'none';
-    } else { alert("Error sending request."); submitBtn.innerText = isCatering ? "Submit Consultation Request ✨" : "Place Order 💖"; }
-  };
-  // Add this to your existing script block
-  const menu = document.getElementById('mobile-menu');
-  const links = document.querySelector('.nav-links');
-  
-  menu.addEventListener('click', () => {
-    links.classList.toggle('active');
-  });
+    
+    const recapList = document.getElementById('recap-list');
+    recapList.innerHTML = "";
+    document.querySelectorAll('.flavor-row').forEach(row => {
+        const cb = row.querySelector('.flavor-check');
+        const qty = row.querySelector('.flavor-qty').value;
+        if (cb.checked && qty > 0) {
+            const li = document.createElement('li');
+            li.innerText = `${qty}x ${cb.value.charAt(0).toUpperCase() + cb.value.slice(1)}`;
+            recapList.appendChild(li);
+        }
+    });
+    document.getElementById('recap-total').innerText = document.getElementById('price-display').innerText;
 
-  
+    const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: new FormData(e.target) });
+    if (res.ok) { 
+        document.getElementById('orderForm').style.display = 'none'; 
+        document.getElementById('main-title').style.display = 'none';
+        document.getElementById('payment-section').style.display = 'block'; 
+        document.getElementById('payment-ui').style.display = serviceSelect.value === 'catering' ? 'none' : 'block';
+        document.getElementById('catering-ui').style.display = serviceSelect.value === 'catering' ? 'block' : 'none';
+    } else {
+        alert("Error sending request.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Place Order 💖";
+    }
+  };
+  document.getElementById('mobile-menu').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
+// --- Add this at the end of your <script> block in order.html ---
+
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const flavorParam = params.get('flavor');
+    const typeParam = params.get('type');
+    
+    // 1. Handle Flavor selection (from main page flavor links)
+    if (flavorParam) {
+        const checkbox = document.querySelector(`.flavor-check[value="${flavorParam}"]`);
+        if (checkbox) {
+            checkbox.checked = true;
+            const row = checkbox.closest('.flavor-row');
+            const qtyInput = row.querySelector('.flavor-qty');
+            if (qtyInput.value == 0) qtyInput.value = 1;
+        }
+    }
+
+    // 2. Handle Catering selection (from catering button)
+    if (typeParam === 'catering') {
+        const serviceSelect = document.getElementById('service-type');
+        serviceSelect.value = 'catering';
+    }
+
+    // 3. Final call to refresh the UI
+    updateView();
+  });
 </script>
 </body>
 </html>
