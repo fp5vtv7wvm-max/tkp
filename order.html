@@ -85,7 +85,7 @@
         <div class="flavor-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;"><input type="checkbox" name="flavor_brownie" value="brownie" class="flavor-check"> <span style="flex:1;">Brownie Bowl ($5)</span><input type="number" class="flavor-qty" value="0" min="0" style="width:60px;"></div>
       </div>
       <div class="form-group"><label>Pickup or Delivery?</label><select id="delivery" name="delivery"><option value="No">Pickup (Free)</option><option value="Yes">Delivery</option></select></div>
-      <div id="delivery-details" style="display:none;"><div class="form-group"><label>Address</label><input type="text" name="address"></div><div class="form-group"><label>City</label><select id="city" name="city"><option value="0">-- Select City --</option><option value="6">St. Louis City (+$6)</option><option value="5">St. Charles, MO (+$5)</option><option value="2">St. Louis County (+$2)</option></select></div></div>
+      <div id="delivery-details" style="display:none;"><div class="form-group"><label>Address</label><input type="text" name="address" id="address-input"></div><div class="form-group"><label>City</label><select id="city" name="city"><option value="0">-- Select City --</option><option value="6">St. Louis City (+$6)</option><option value="5">St. Charles, MO (+$5)</option><option value="2">St. Louis County (+$2)</option></select></div></div>
       <div id="price-display" style="color:#ff4f8a; font-size:24px; font-weight:700; margin: 15px 0; text-align:center;">Total: $0</div>
       <input type="hidden" id="final-price-input" name="Total_Price">
     </div>
@@ -110,7 +110,6 @@
   const consultTime = document.getElementById('consult-time');
   const cakeImages = { "vanilla": "Images/beanv.jpeg", "chocolate": "Images/choco.jpeg", "lemon": "Images/vanilla.jpeg", "brownie": "Images/browniebowl.jpeg" };
 
-  // Init Time Select
   consultDate.min = new Date().toISOString().split("T")[0];
   for (let h = 12; h <= 20; h++) {
     [0, 30].forEach(m => {
@@ -177,6 +176,16 @@
             recapList.appendChild(li);
         }
     });
+
+    if (delivery.value === "Yes") {
+        const address = document.getElementById('address-input').value;
+        if (address.trim() !== "") {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>Delivery to:</strong> ${address}`;
+            recapList.appendChild(li);
+        }
+    }
+
     document.getElementById('recap-total').innerText = document.getElementById('price-display').innerText;
 
     const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: new FormData(e.target) });
@@ -192,15 +201,12 @@
         submitBtn.innerText = "Place Order 💖";
     }
   };
+  
   document.getElementById('mobile-menu').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
-// --- Add this at the end of your <script> block in order.html ---
 
-window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const flavorParam = params.get('flavor');
-    const typeParam = params.get('type');
-    
-    // 1. Handle Flavor selection (from main page flavor links)
     if (flavorParam) {
         const checkbox = document.querySelector(`.flavor-check[value="${flavorParam}"]`);
         if (checkbox) {
@@ -208,17 +214,9 @@ window.addEventListener('DOMContentLoaded', () => {
             const row = checkbox.closest('.flavor-row');
             const qtyInput = row.querySelector('.flavor-qty');
             if (qtyInput.value == 0) qtyInput.value = 1;
+            updateView();
         }
     }
-
-    // 2. Handle Catering selection (from catering button)
-    if (typeParam === 'catering') {
-        const serviceSelect = document.getElementById('service-type');
-        serviceSelect.value = 'catering';
-    }
-
-    // 3. Final call to refresh the UI
-    updateView();
   });
 </script>
 </body>
